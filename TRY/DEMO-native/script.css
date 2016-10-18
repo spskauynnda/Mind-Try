@@ -1,5 +1,28 @@
-*{
-    margin: 0;
-    padding: 0;
-    border: 0;
+body{
+    background: #ffe8c4;
+}
+.view{
+    height: 100%;
+    width: 100%;
+}
+.view h1{
+    text-align: center;
+    line-height: 60px;
+}
+.tree{
+    padding-top: 2px;
+}
+.node_root{
+    margin: 20% auto 0 auto;
+}
+.node{
+    height: 30px;
+    width: 60px;
+    background: #8ed8e2;
+    border: 2px solid #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
 }

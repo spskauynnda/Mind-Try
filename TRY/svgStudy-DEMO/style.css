@@ -1,0 +1,8 @@
+.rect1{
+    width: 100px;
+    height: 100px;
+    fill: blue;
+    stroke: pink 0.5;
+    opacity: 0.8;
+    x: 50px;
+}
