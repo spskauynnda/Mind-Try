@@ -25,19 +25,17 @@ var data = new Node('ROOT','0',[
         new Node('CSS','1',[
                 new Node('Sass','0',[]),
                 new Node('bootstrap','1',[])
-            ]
-        ),
-        new Node('JavaScript','2',[])
+        ]),
+        new Node('JavaScript','2',[
+                new Node('jQuery','0',[]),
+                new Node('AngularJS','1',[]),
+                new Node('reactJS','2',[])
+        ])
     ]
 );
 
-console.dir(data);
 
 
-/**排版控制**/
-function rsort(){
-    
-}
 
 /**递归遍历data对象并输出**/
                                      //  函数traver()返回 father*内* 的子对象所对应的html内容
@@ -85,12 +83,57 @@ function print(){
     //     _$('.tree')[0].innerHTML = html;
     // }
 
+
+/**排版控制**/
+var space = 12;                 //上下的间隔
+var height = 30;
+var border = 2;
+function oneSort(father){
+    var kids;
+    if(father.childNodes){
+        kids = father.childNodes;
+    }else{
+        kids = father.children;
+    }
+    var len = kids.length;
+    var h = (len-1)*(height+space)-space;
+    console.dir(kids);
+    for(var i=1; i<len; i++){
+        kids[i].style.left = '100px';
+        kids[i].style.top = height/2+border-h/2+(i-1)*(height+space) + 'px';
+    }
+}
+function allSort(father){
+    var kids;
+    if(father.childNodes){
+        kids = father.childNodes;
+    }else{
+        kids = father.children;
+    }
+    var len = kids.length;
+    if(!len){
+        return true;
+    }else{
+        var h = (len-1)*(height+space)-space;
+        console.dir(kids);
+        for(var i=1; i<len; i++){
+            kids[i].style.left = '100px';
+            kids[i].style.top = height/2-border-h/2+(i-1)*(height+space) + 'px';
+            allSort(kids[i]);
+        }
+    }
+}
+
 /**生成子结点（同时重排版）**/
 function addNode(){
+
+
+
+
 }
 
 window.onload = function(){
-    print();
+    print();    allSort(_$('#0'));
 };
 
 
