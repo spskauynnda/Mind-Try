@@ -6,19 +6,22 @@
 // xn.print();
 // ------------------------------------------------------------------------------------------
 
-/**通用**/
+/** 通用 **/
 var _$ = function(selector){
-    var method = selector.substr(0,1) == '.'? 'getElementsByClassName' : 'getElementById';
+    var method = selector.substr(0,1) == '.'? 'getElementsByClassName' :
+                        selector.substr(0,1) == '#'? 'getElementById' : 'getElementsByTagName';
     return document[method](selector.substr(1));
 };
+//   可优化：要么在获取Tag时加个前缀，要么在此处修改函数
 
-
-/**data**/
+/** data **/
 function Node(text,id,kids){
     this.text = text;
     this.id = id;
     this.kids = kids;
 }
+
+
 
 var data = new Node('ROOT','0',[
         new Node('HTML','0',[]),
@@ -36,8 +39,7 @@ var data = new Node('ROOT','0',[
 
 
 
-
-/**递归遍历data对象并输出**/
+/** 输出控制 **/                        //  递归遍历data对象并输出
                                      //  函数traver()返回 father*内* 的子对象所对应的html内容
 function traver(father,_id_){        //  字符串_id_ 负责记录父对象的id, 即该支路的id
     _id_ += father.id;               //  字符串_html_ 负责记录当前结点下要生成的html内容
@@ -58,6 +60,7 @@ function print(){
     var html = _$('#0').innerHTML;
     html += traver(root,'');
     _$('#0').innerHTML = html;
+    allSort(_$('#0'));
 }
 
     // function traver(father,_id_){       //  此时函数traver()返回 当前father对象及其子对象所对应的html内容
@@ -84,38 +87,26 @@ function print(){
     // }
 
 
-/**排版控制**/
+/** 排版控制 **/
 var space = 12;                 //上下的间隔
 var height = 30;
 var border = 2;
 function oneSort(father){
-    var kids;
-    if(father.childNodes){
-        kids = father.childNodes;
-    }else{
-        kids = father.children;
-    }
+    var kids = father.childNodes == false ? father.children : father.childNodes;
     var len = kids.length;
     var h = (len-1)*(height+space)-space;
-    console.dir(kids);
     for(var i=1; i<len; i++){
         kids[i].style.left = '100px';
         kids[i].style.top = height/2+border-h/2+(i-1)*(height+space) + 'px';
     }
 }
-function allSort(father){
-    var kids;
-    if(father.childNodes){
-        kids = father.childNodes;
-    }else{
-        kids = father.children;
-    }
+function allSort(father){                   
+    var kids = father.childNodes == false ? father.children : father.childNodes;
     var len = kids.length;
-    if(!len){
+    if(len<=1){
         return true;
     }else{
         var h = (len-1)*(height+space)-space;
-        console.dir(kids);
         for(var i=1; i<len; i++){
             kids[i].style.left = '100px';
             kids[i].style.top = height/2-border-h/2+(i-1)*(height+space) + 'px';
@@ -124,16 +115,46 @@ function allSort(father){
     }
 }
 
-/**生成子结点（同时重排版）**/
-function addNode(){
 
+/** 选择 **/
+function pselect(father){
+    var kids = father.childNodes == false ? father.children : father.childNodes;
 
+    kids[0].onclick = function(){             //  点击时 1.先把所有active消除  2.再为点击的对象添加active类
+        for (var i=0; i<_$('tp').length; i++){
+            _$('tp')[i].className = _$('tp')[i].className.replace(/active/,'');
+        }
+        kids[0].className += 'active';
+    };
 
-
+    if(kids.length<=1){
+        return true;
+    }else{
+        for(var i=1; i<kids.length; i++){
+            pselect(kids[i]);
+        }
+    }
 }
 
+/** 增加/删除/撤回 **/            //（点击同时重排版）
+
+function addNode(){
+    _$('.tool')[0].getElementsByTagName('li')[0].onclick = function(){
+        var father = _$('.active')[0].parentNode;
+        var kids = father.childNodes == false ? father.children : father.childNodes;
+        var _id_ = father.id + kids.length;
+        var _node_ = document.createElement("div");
+        _node_.setAttribute("id", _id_);
+        _node_.setAttribute("class", 'node');
+        _node_.innerHTML = "<p>——————</p>";
+        father.appendChild(_node_);
+        oneSort(father);
+    };
+}
+
+/////////////////////////////////////////////////////////////////////
 window.onload = function(){
-    print();    allSort(_$('#0'));
+    print();    pselect(_$('.node_root')[0]);     addNode();
 };
 
 

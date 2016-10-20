@@ -1,5 +1,5 @@
 body{
-    background: #ffe8c4;
+    background: #ffffff;
 }
 .view{
     height: 100%;
@@ -8,11 +8,30 @@ body{
 .header{
     height: 60px;
     width: 100%;
-    background: #ffffff;
+    background: #53a1ff;
+    /*background: #ffe8c4;*/
 }
 .header h1{
+    color: #ffffff;
     text-align: center;
     line-height: 60px;
+    text-shadow: 2px 2px 2px #666666;
+}
+.tool{
+    font-size: 18px;
+    color: #ffffff;
+    height: 40px;
+    width: 100%;
+    background: #59aaff;
+}
+.tool li{
+    text-align: center;
+    line-height: 40px;
+    width: 33.33%;
+    float: left;
+}
+.tool li span{
+    cursor: pointer;
 }
 .tree{
     padding-top: 2px;
@@ -22,7 +41,7 @@ body{
     /*width: 60px;*/
     background: #8ed8e2;
     padding: 0 6px;
-    border: 2px solid #ffffff;
+    /*border: 2px solid #ffffff;*/
     font-size: 16px;
     font-weight: bold;
     text-align: center;
@@ -35,3 +54,10 @@ body{
     left: 50%;
     margin-left: -30px;
 }
+
+
+/*事件标记*/
+.active{
+    color: red;
+}
+
