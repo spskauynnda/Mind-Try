@@ -88,16 +88,17 @@ function print(){
 
 
 /** 排版控制 **/
-var space = 12;                 //上下的间隔
+var r_space = 12;                 //上下的间隔
 var height = 30;
 var border = 2;
+var l_space = 40;
 function oneSort(father){
     var kids = father.childNodes == false ? father.children : father.childNodes;
     var len = kids.length;
-    var h = (len-1)*(height+space)-space;
+    var h = (len-1)*(height+r_space)-r_space;
     for(var i=1; i<len; i++){
-        kids[i].style.left = '100px';
-        kids[i].style.top = height/2+border-h/2+(i-1)*(height+space) + 'px';
+        kids[i].style.left = parseInt(_$('#'+father.id+'').offsetWidth) + l_space + 'px';
+        kids[i].style.top = height/2+border-h/2+(i-1)*(height+r_space) + 'px';
     }
 }
 function allSort(father){                   
@@ -106,10 +107,10 @@ function allSort(father){
     if(len<=1){
         return true;
     }else{
-        var h = (len-1)*(height+space)-space;
+        var h = (len-1)*(height+r_space)-r_space;
         for(var i=1; i<len; i++){
-            kids[i].style.left = '100px';
-            kids[i].style.top = height/2-border-h/2+(i-1)*(height+space) + 'px';
+            kids[i].style.left = parseInt(_$('#'+father.id+'').offsetWidth) + l_space + 'px';
+            kids[i].style.top = height/2-border-h/2+(i-1)*(height+r_space) + 'px';
             allSort(kids[i]);
         }
     }
@@ -121,10 +122,14 @@ function pselect(father){
     var kids = father.childNodes == false ? father.children : father.childNodes;
 
     kids[0].onclick = function(){             //  点击时 1.先把所有active消除  2.再为点击的对象添加active类
-        for (var i=0; i<_$('tp').length; i++){
-            _$('tp')[i].className = _$('tp')[i].className.replace(/active/,'');
+        if(!kids[0].className.indexOf('active')){
+            kids[0].className = kids[0].className.replace(/active/,'');
+        }else{
+            for (var i=0; i<_$('tp').length; i++){
+                _$('tp')[i].className = _$('tp')[i].className.replace(/active/,'');
+            }
+            kids[0].className += 'active';
         }
-        kids[0].className += 'active';
     };
 
     if(kids.length<=1){
@@ -149,13 +154,32 @@ function addNode(){
         _node_.innerHTML = "<p>——————</p>";
         father.appendChild(_node_);
         oneSort(father);
+        pselect(father);
     };
 }
 
+function delNode(){
+    _$('.tool')[0].getElementsByTagName('li')[1].onclick = function(){
+        var father = _$('.active')[0].parentNode;
+        var grandpa = father.parentNode;
+        grandpa.removeChild(father);
+        allSort(_$('.node_root')[0]);
+    };
+}
+function hidNode(){
+    _$('.tool')[0].getElementsByTagName('li')[2].onclick = function(){
+        var father = _$('.active')[0].parentNode;
+        father.style.display = 'none';
+        allSort(_$('.node_root')[0]);
+    };
+}
+
+
 /////////////////////////////////////////////////////////////////////
 window.onload = function(){
-    print();    pselect(_$('.node_root')[0]);     addNode();
+    print();    pselect(_$('.node_root')[0]);    addNode();    delNode();    hidNode();
 };
+
 
 
 
