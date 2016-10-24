@@ -26,13 +26,13 @@ function Node(text,id,kids){
 var data = new Node('ROOT','0',[
         new Node('HTML','0',[]),
         new Node('CSS','1',[
-                new Node('Sass','0',[]),
-                new Node('bootstrap','1',[])
+            new Node('Sass','0',[]),
+            new Node('bootstrap','1',[])
         ]),
         new Node('JavaScript','2',[
-                new Node('jQuery','0',[]),
-                new Node('AngularJS','1',[]),
-                new Node('reactJS','2',[])
+            new Node('jQuery','0',[]),
+            new Node('AngularJS','1',[]),
+            new Node('reactJS','2',[])
         ])
     ]
 );
