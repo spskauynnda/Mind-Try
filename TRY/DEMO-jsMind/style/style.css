@@ -18,21 +18,21 @@ body{
     text-shadow: 1px 1px 1px #666666;
 }
 .tool{
-font-size: 18px;
-color: #ffffff;
-height: 40px;
-width: 100%;
-background: #59aaff;
+    font-size: 18px;
+    color: #ffffff;
+    height: 40px;
+    width: 100%;
+    background: #59aaff;
 }
 .tool li{
-text-align: center;
-line-height: 40px;
-width: 33.33%;
-float: left;
+    text-align: center;
+    line-height: 40px;
+    width: 33.33%;
+    float: left;
 }
 .tool li span{
-cursor: pointer;
-text-shadow: 1px 1px 1px #666666;
+    cursor: pointer;
+    text-shadow: 1px 1px 1px #666666;
 }
 #jsmind_container{
     width: 100%;

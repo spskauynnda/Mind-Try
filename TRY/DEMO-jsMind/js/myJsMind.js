@@ -32,4 +32,4 @@ function remove_node(){
 
 window.onload = function(){
     _jm.show();
-}
+};
