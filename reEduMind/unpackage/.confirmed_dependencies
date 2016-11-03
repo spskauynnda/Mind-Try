@@ -1,0 +1,26 @@
+{
+  "index.html": {
+    "href": "index.html",
+    "resources": [
+      "css/jsmind.css",
+      "css/reset.css",
+      "css/style.css",
+      "js/plusStart.js",
+      "js/jsmind.js",
+      "js/jsmind.draggable.js",
+      "js/jsmind.screenshot.js",
+      "js/zepto.min.js",
+      "js/jwav.min.js",
+      "js/fingerprint.js",
+      "js/iat.min.js",
+      "js/common/vad.js",
+      "js/audio/recorderWorker.js",
+      "js/speex.js",
+      "js/iatCtrl.js",
+      "js/mindCtrl.js",
+      "js/common/speex.js"
+    ],
+    "refer": [],
+    "priority": 0
+  }
+}

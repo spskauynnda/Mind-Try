@@ -1,0 +1,83 @@
+body{
+    background: #ffffff;
+}
+.view{
+    height: 100%;
+    width: 100%;
+}
+.header{
+    height: 60px;
+    width: 100%;
+    background: #53a1ff;
+    /*background: #ffe8c4;*/
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.header h1{
+    color: #ffffff;
+    text-align: center;
+    line-height: 60px;
+    text-shadow: 1px 1px 1px #666666;
+}
+.tool{
+    font-size: 18px;
+    color: #ffffff;
+    height: 40px;
+    width: 100%;
+    background: #59aaff;
+    padding-top: 60px;
+}
+.tool li{
+    text-align: center;
+    line-height: 40px;
+    width: 25%;
+    float: left;
+}
+.tool li span, .tool select, .tool option{
+	color: #ffffff;
+	font-size: 18px;
+    cursor: pointer;
+    text-shadow: 1px 1px 1px #666666;
+	background: #59AAFF;
+}
+.tool option{
+	min-height: 1em;
+}
+#jsmind_container{
+    width: 100%;
+    height: 600px;
+    /*padding-top: 60px;*/
+}
+.dropdown-menu li{
+	float: none;
+}
+
+#a {	
+	background:rgb(60, 135, 235);
+	height:80px;
+	width:450px;
+	margin:auto;
+	max-width:100%;
+	overflow: hidden;
+}
+@media all and (max-width: 310px) {
+	#a{
+		font-size: 0.8em;
+	}
+}
+@media all and (min-width: 310px) {
+	#a{
+		font-size: 1.2em;
+	}
+}
+@media all and (min-width: 420px) {
+	#a{
+		font-size: 1.5em;
+	}
+}
+@media all and (min-width: 540px) {
+	#a{
+		font-size: 2em;
+	}
+}
